@@ -1,6 +1,7 @@
 #include "graph_drawing.h"
 #include <iostream>
 #include <fstream>
+#include <cmath>
 
 GraphDrawer::GraphDrawer(int width, int height, const std::vector<std::vector<uint8_t>>& image)
     : image(image), imageWidth(width), imageHeight(height) {}
