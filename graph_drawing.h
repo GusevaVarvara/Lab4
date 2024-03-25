@@ -13,7 +13,7 @@ struct BMPixel {
 
 class GraphDrawer {
 public:
-    GraphDrawer(int width, int height, const std::vector<std::vector<uint8_t>>& image);
+    GraphDrawer(int width, int height, const std::vector<std::vector<uint8_t>>& image_);
     void drawGraph(const std::vector<Point>& points, const std::vector<std::vector<int>>& adjacencyMatrix);
     void saveImage(const char* filename, int width, int height, const std::vector<std::vector<uint8_t>>& image);
 
