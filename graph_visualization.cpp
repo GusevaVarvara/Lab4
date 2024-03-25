@@ -28,8 +28,8 @@ double distance(const Point& p1, const Point& p2) {
 void fruchtermanReingold(std::vector<Point>& points, const std::vector<std::vector<int>>& adjacencyMatrix, int width, int height) {
     const int numVertices = points.size();
 
-    const double k5Vertices = 1.0;
-    const double c5Vertices = 0.01;
+    const double k5Vertices = 0.5;
+    const double c5Vertices = 0.005;
     const int maxIterFor5Vertices = 100;
 
     const double kFor500Vertices = 2.0;
