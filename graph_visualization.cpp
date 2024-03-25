@@ -4,9 +4,6 @@
 
 const int vertexRadius = 5;
 const double minVertexDistance = 30;
-const double k = 2.0;
-const double c = 0.06;
-const int maxIterations = 300;
 
 int getRandomNumber(int min, int max) {
     static std::random_device rd;
@@ -16,7 +13,6 @@ int getRandomNumber(int min, int max) {
 }
 
 void generateRandomCoordinates(std::vector<Point>& points, int width, int height) {
-    
 
     for (int i = 0; i < points.size(); ++i) {
         points[i].x = getRandomNumber(vertexRadius, width - vertexRadius);
@@ -31,6 +27,19 @@ double distance(const Point& p1, const Point& p2) {
 
 void fruchtermanReingold(std::vector<Point>& points, const std::vector<std::vector<int>>& adjacencyMatrix, int width, int height) {
     const int numVertices = points.size();
+
+    const double k5Vertices = 1.0;
+    const double c5Vertices = 0.01;
+    const int maxIterFor5Vertices = 100;
+
+    const double kFor500Vertices = 2.0;
+    const double cFor500Vertices = 0.06;
+    const int maxIterFor500Vertices = 300;
+
+    double alpha = static_cast<double>(numVertices - 5) / (500 - 5);
+    double k = k5Vertices + alpha * (kFor500Vertices - k5Vertices);
+    double c = c5Vertices + alpha * (cFor500Vertices - c5Vertices);
+    int maxIterations = maxIterFor5Vertices + static_cast<int>(alpha * (maxIterFor500Vertices - maxIterFor5Vertices));
 
     for (int iter = 0; iter < maxIterations; ++iter) {
         std::vector<Point> repulsiveForces(numVertices, Point(0, 0));
