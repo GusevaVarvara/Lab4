@@ -12,11 +12,21 @@ std::vector<std::vector<int>> readGraph(const std::string& filename, int& V, int
 
     file >> V >> E; 
 
+    if (V <= 0 || E <= 0) {
+        std::cerr << "Error: Number of vertices or edges is non-positive" << std::endl;
+        exit(1);
+    }
+
     std::vector<std::vector<int>> adjacencyMatrix(V, std::vector<int>(V, 0));
 
     int u, v;
     for (int i = 0; i < E; ++i) {
         file >> u >> v;
+
+        if (u <= 0 || u > V || v <= 0 || v > V) {
+            std::cerr << "Error: Vertex indices are out of range" << std::endl;
+            exit(1);
+        }
       
         adjacencyMatrix[u - 1][v - 1] = 1; 
         adjacencyMatrix[v - 1][u - 1] = 1; 
