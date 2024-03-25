@@ -3,15 +3,15 @@
 #include <fstream>
 #include <cmath>
 
-GraphDrawer::GraphDrawer(int width, int height, const std::vector<std::vector<uint8_t>>& image)
-    : image(image), imageWidth(width), imageHeight(height) {}
+GraphDrawer::GraphDrawer(int width, int height, const std::vector<std::vector<uint8_t>>& image_)
+    : image(image_), imageWidth(width), imageHeight(height) {}
 
 void GraphDrawer::drawGraph(const std::vector<Point>& points, const std::vector<std::vector<int>>& adjacencyMatrix) {
     const int vertexRadius = 5; 
 
     for (size_t i = 0; i < points.size(); ++i) {
         drawVertex(points[i], vertexRadius);
-        drawText(Point(points[i].x - 3, points[i].y - 12), std::to_string(i));
+        drawText(Point(points[i].x - 3, points[i].y - 12), std::to_string(i+1));
     }
 
 
