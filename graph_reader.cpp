@@ -20,6 +20,7 @@ std::vector<std::vector<int>> readGraph(const std::string& filename, int& V, int
     std::vector<std::vector<int>> adjacencyMatrix(V, std::vector<int>(V, 0));
 
     int u, v;
+    int edgeCount = 0;
     for (int i = 0; i < E; ++i) {
         file >> u >> v;
 
@@ -30,6 +31,18 @@ std::vector<std::vector<int>> readGraph(const std::string& filename, int& V, int
       
         adjacencyMatrix[u - 1][v - 1] = 1; 
         adjacencyMatrix[v - 1][u - 1] = 1; 
+
+        edgeCount++;
+    }
+
+    if (file >> u >> v) {
+        std::cerr << "Error: Too many edges in the file!" << std::endl;
+        exit(1);
+    }
+
+    if (edgeCount != E) {
+        std::cerr << "Error: Number of edges doesn't match the specified count in the file!" << std::endl;
+        exit(1);
     }
 
     file.close();
